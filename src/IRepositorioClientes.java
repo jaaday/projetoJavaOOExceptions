@@ -4,7 +4,7 @@ public interface IRepositorioClientes {
 
 	public abstract boolean existe(String cpf) throws ClienteExistenteException;
 
-	public abstract void inserir(Cliente c);
+	public abstract void inserir(Cliente c) throws ClienteInvalidoException;
 
 	public abstract Cliente procurar(String cpf) throws ClienteInexistenteException;
 

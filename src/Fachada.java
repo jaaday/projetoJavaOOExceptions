@@ -32,7 +32,7 @@ public class Fachada {
 		return clientes.procurar(cpf);
 	}
 
-	public void cadastrar(Cliente c) throws ClienteExistenteException {
+	public void cadastrar(Cliente c) throws ClienteExistenteException, ClienteInvalidoException {
 		clientes.cadastrar(c);
 	}
 

@@ -48,9 +48,12 @@ public class FachadaClienteTest {
 			Assert.assertEquals(joao, fachada.procurarCliente(joao.getCpf()));
 			Assert.assertNotEquals(null, fachada.procurarCliente(joao.getCpf()));
 		} catch (ClienteInexistenteException e) {
-			e.printStackTrace();
+			e.getMessage();
 		} catch (ClienteExistenteException e) {
 			e.getMessage();
+		} catch (ClienteInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -62,6 +65,8 @@ public class FachadaClienteTest {
 			outContent.reset();
 			fachada.cadastrar(joao);
 		} catch (ClienteExistenteException e) {
+			e.getMessage();
+		} catch (ClienteInvalidoException e) {
 			e.getMessage();
 		}
 
@@ -85,6 +90,8 @@ public class FachadaClienteTest {
 			e.getMessage();
 		} catch (ClienteInexistenteException e) {
 			e.getMessage();
+		} catch (ClienteInvalidoException e) {
+			e.getMessage();
 		}
 
 	}
@@ -100,6 +107,8 @@ public class FachadaClienteTest {
 		} catch (ClienteExistenteException e) {
 			e.getMessage();
 		} catch (ClienteInexistenteException e) {
+			e.getMessage();
+		} catch (ClienteInvalidoException e) {
 			e.getMessage();
 		}
 		

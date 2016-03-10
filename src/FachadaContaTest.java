@@ -37,6 +37,8 @@ public class FachadaContaTest {
 			fachada.cadastrar(cli3);
 		} catch (ClienteExistenteException e) {
 			e.getMessage();
+		} catch (ClienteInvalidoException e) {
+			e.getMessage();
 		}
 
 	}

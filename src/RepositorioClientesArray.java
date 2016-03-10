@@ -47,9 +47,13 @@ public class RepositorioClientesArray implements IRepositorioClientes {
 	 * @see RepositorioClientes#inserir(Cliente)
 	 */
 	@Override
-	public void inserir(Cliente c) {
-		clientes[indice] = c;
-		indice = indice + 1;
+	public void inserir(Cliente c) throws ClienteInvalidoException {
+		if (c == null) {
+			throw new ClienteInvalidoException();
+		} else {
+			clientes[indice] = c;
+			indice = indice + 1;
+		}
 	}
 
 	/*

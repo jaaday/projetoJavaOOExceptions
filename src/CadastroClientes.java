@@ -9,7 +9,7 @@ public class CadastroClientes {
 		clientes.atualizar(c);
 	}
 
-	public void cadastrar(Cliente c) throws ClienteExistenteException {
+	public void cadastrar(Cliente c) throws ClienteExistenteException, ClienteInvalidoException {
 		String cpf = c.getCpf();
 		if (!clientes.existe(cpf)) {
 			clientes.inserir(c);

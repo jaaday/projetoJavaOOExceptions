@@ -36,9 +36,9 @@ public class FachadaContaTest {
 			fachada.cadastrar(cli2);
 			fachada.cadastrar(cli3);
 		} catch (ClienteExistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente já existe!!!", e.getMessage());
 		} catch (ClienteInvalidoException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente Inválido!!!", e.getMessage());
 		}
 
 	}
@@ -50,7 +50,7 @@ public class FachadaContaTest {
 			fachada.descadastrarConta(conta456.getNumero());
 			fachada.descadastrarConta(conta789.getNumero());
 		} catch (ContaInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta não existe!!!", e.getMessage());
 		}
 
 		outContent.reset();
@@ -67,11 +67,11 @@ public class FachadaContaTest {
 			fachada.cadastrar(conta123);
 			Assert.assertNotEquals(null, fachada.procurarConta(conta123.getNumero()));
 		} catch (ContaInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta não existe!!!", e.getMessage());
 		} catch (ClienteInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
 		} catch (ContaExistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta já existe!!!", e.getMessage());
 		}
 
 	}
@@ -83,11 +83,12 @@ public class FachadaContaTest {
 			Assert.assertEquals(conta123, fachada.procurarConta(conta123.getNumero()));
 			outContent.reset();
 			fachada.cadastrar(conta123);
-			Assert.assertEquals("Conta ja cadastrada\n", outContent.toString());
-		} catch (ClienteInexistenteException | ContaExistenteException e) {
-			e.getMessage();
 		} catch (ContaInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta não existe!!!", e.getMessage());
+		} catch (ClienteInexistenteException e) {
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
+		} catch (ContaExistenteException e) {
+			Assert.assertEquals("Conta já existe!!!", e.getMessage());
 		}
 
 	}
@@ -106,10 +107,12 @@ public class FachadaContaTest {
 			fachada.atualizar(conta123);
 			Assert.assertEquals(conta123.getCliente().getNome(),
 					fachada.procurarConta(conta123.getNumero()).getCliente().getNome());
-		} catch (ClienteInexistenteException | ContaExistenteException e) {
-			e.getMessage();
 		} catch (ContaInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta não existe!!!", e.getMessage());
+		} catch (ClienteInexistenteException e) {
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
+		} catch (ContaExistenteException e) {
+			Assert.assertEquals("Conta já existe!!!", e.getMessage());
 		}
 
 	}
@@ -122,10 +125,12 @@ public class FachadaContaTest {
 
 			fachada.descadastrarConta(conta123.getNumero());
 			Assert.assertEquals(null, fachada.procurarConta(conta123.getNumero()));
-		} catch (ClienteInexistenteException | ContaExistenteException e) {
-			e.getMessage();
 		} catch (ContaInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta não existe!!!", e.getMessage());
+		} catch (ClienteInexistenteException e) {
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
+		} catch (ContaExistenteException e) {
+			Assert.assertEquals("Conta já existe!!!", e.getMessage());
 		}
 
 	}
@@ -142,12 +147,14 @@ public class FachadaContaTest {
 
 			Assert.assertEquals(35.00, conta123.getSaldo(), 0.0);
 			Assert.assertEquals(105.00, conta456.getSaldo(), 0.0);
-		} catch (ClienteInexistenteException | ContaExistenteException e) {
-			e.getMessage();
 		} catch (ContaInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta não existe!!!", e.getMessage());
 		} catch (SaldoInsuficienteException e) {
-			e.getMessage();
+			Assert.assertEquals("Saldo insuficiente!!!", e.getMessage());
+		} catch (ClienteInexistenteException e) {
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
+		} catch (ContaExistenteException e) {
+			Assert.assertEquals("Conta já existe!!!", e.getMessage());
 		}
 
 	}
@@ -160,10 +167,12 @@ public class FachadaContaTest {
 
 			fachada.creditar(conta123.getNumero(), 17.00);
 			Assert.assertEquals(67.00, conta123.getSaldo(), 0.0);
-		} catch (ClienteInexistenteException | ContaExistenteException e) {
-			e.getMessage();
 		} catch (ContaInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta não existe!!!", e.getMessage());
+		} catch (ClienteInexistenteException e) {
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
+		} catch (ContaExistenteException e) {
+			Assert.assertEquals("Conta já existe!!!", e.getMessage());
 		}
 
 	}
@@ -176,12 +185,14 @@ public class FachadaContaTest {
 
 			fachada.debitar(conta123.getNumero(), 24.00);
 			Assert.assertEquals(26.00, conta123.getSaldo(), 0.0);
-		} catch (ClienteInexistenteException | ContaExistenteException e) {
-			e.getMessage();
 		} catch (ContaInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Conta não existe!!!", e.getMessage());
 		} catch (SaldoInsuficienteException e) {
-			e.getMessage();
+			Assert.assertEquals("Saldo insuficiente!!!", e.getMessage());
+		} catch (ClienteInexistenteException e) {
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
+		} catch (ContaExistenteException e) {
+			Assert.assertEquals("Conta já existe!!!", e.getMessage());
 		}
 
 	}

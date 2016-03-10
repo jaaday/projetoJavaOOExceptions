@@ -30,8 +30,7 @@ public class FachadaClienteTest {
 			fachada.descadastrarCliente(joao.getCpf());
 			fachada.descadastrarCliente(maria.getCpf());
 		} catch (ClienteInexistenteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
 		}
 
 		outContent.reset();
@@ -48,12 +47,11 @@ public class FachadaClienteTest {
 			Assert.assertEquals(joao, fachada.procurarCliente(joao.getCpf()));
 			Assert.assertNotEquals(null, fachada.procurarCliente(joao.getCpf()));
 		} catch (ClienteInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
 		} catch (ClienteExistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente já existe!!!", e.getMessage());
 		} catch (ClienteInvalidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Assert.assertEquals("Cliente Inválido!!!", e.getMessage());
 		}
 
 	}
@@ -65,12 +63,10 @@ public class FachadaClienteTest {
 			outContent.reset();
 			fachada.cadastrar(joao);
 		} catch (ClienteExistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente já existe!!!", e.getMessage());
 		} catch (ClienteInvalidoException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente Inválido!!!", e.getMessage());
 		}
-
-		Assert.assertEquals("Cliente Existente\n", outContent.toString());
 
 	}
 
@@ -87,11 +83,11 @@ public class FachadaClienteTest {
 			Assert.assertEquals(joao.getNome(), fachada.procurarCliente(joao.getCpf()).getNome());
 
 		} catch (ClienteExistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente já existe!!!", e.getMessage());
 		} catch (ClienteInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
 		} catch (ClienteInvalidoException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente Inválido!!!", e.getMessage());
 		}
 
 	}
@@ -105,11 +101,11 @@ public class FachadaClienteTest {
 			fachada.descadastrarCliente(joao.getCpf());
 			Assert.assertEquals(null, fachada.procurarCliente(joao.getCpf()));
 		} catch (ClienteExistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente já existe!!!", e.getMessage());
 		} catch (ClienteInexistenteException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente não existe!!!", e.getMessage());
 		} catch (ClienteInvalidoException e) {
-			e.getMessage();
+			Assert.assertEquals("Cliente Inválido!!!", e.getMessage());
 		}
 		
 	}

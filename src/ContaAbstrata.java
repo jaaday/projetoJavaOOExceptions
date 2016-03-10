@@ -17,12 +17,12 @@ public abstract class ContaAbstrata {
 		saldo = saldo + valor;
 	}
 
-	public abstract void debitar(double valor);
-	
+	public abstract void debitar(double valor) throws SaldoInsuficienteException;
+
 	protected void diminuiSaldo(double valor) {
 		saldo = saldo - valor;
 	}
-	
+
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -47,7 +47,7 @@ public abstract class ContaAbstrata {
 		saldo = valor;
 	}
 
-	public void transferir(ContaAbstrata c, double v) {
+	public void transferir(ContaAbstrata c, double v) throws SaldoInsuficienteException {
 		this.debitar(v);
 		c.creditar(v);
 	}

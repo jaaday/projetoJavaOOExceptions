@@ -24,31 +24,31 @@ public class Fachada {
 		return instancia;
 	}
 
-	public void atualizar(Cliente c) {
+	public void atualizar(Cliente c) throws ClienteInexistenteException {
 		clientes.atualizar(c);
 	}
 
-	public Cliente procurarCliente(String cpf) {
+	public Cliente procurarCliente(String cpf) throws ClienteInexistenteException {
 		return clientes.procurar(cpf);
 	}
 
-	public void cadastrar(Cliente c) {
+	public void cadastrar(Cliente c) throws ClienteExistenteException {
 		clientes.cadastrar(c);
 	}
 
-	public void descadastrarCliente(String cpf) {
+	public void descadastrarCliente(String cpf) throws ClienteInexistenteException {
 		clientes.descadastrar(cpf);
 	}
 
-	public void atualizar(ContaAbstrata c) {
+	public void atualizar(ContaAbstrata c) throws ContaInexistenteException {
 		contas.atualizar(c);
 	}
 
-	public ContaAbstrata procurarConta(String n) {
+	public ContaAbstrata procurarConta(String n) throws ContaInexistenteException {
 		return contas.procurar(n);
 	}
 
-	public void cadastrar(ContaAbstrata c) {
+	public void cadastrar(ContaAbstrata c) throws ClienteInexistenteException, ContaExistenteException {
 
 		Cliente cli = c.getCliente();
 		if (cli != null) {
@@ -59,20 +59,20 @@ public class Fachada {
 		}
 	}
 
-	public void descadastrarConta(String n) {
+	public void descadastrarConta(String n) throws ContaInexistenteException {
 		contas.remover(n);
 	}
 
-	public void creditar(String n, double v) {
+	public void creditar(String n, double v) throws ContaInexistenteException {
 		contas.creditar(n, v);
 	}
 
-	public void debitar(String n, double v) {
-
+	public void debitar(String n, double v) throws ContaInexistenteException, SaldoInsuficienteException {
 		contas.debitar(n, v);
 	}
 
-	public void transferir(String origem, String destino, double val) {
+	public void transferir(String origem, String destino, double val)
+			throws ContaInexistenteException, SaldoInsuficienteException {
 		contas.transferir(origem, destino, val);
 	}
 }

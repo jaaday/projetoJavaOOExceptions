@@ -5,24 +5,22 @@ public class CadastroClientes {
 		this.clientes = rep;
 	}
 
-	public void atualizar(Cliente c) {
+	public void atualizar(Cliente c) throws ClienteInexistenteException {
 		clientes.atualizar(c);
 	}
 
-	public void cadastrar(Cliente c) {
+	public void cadastrar(Cliente c) throws ClienteExistenteException {
 		String cpf = c.getCpf();
 		if (!clientes.existe(cpf)) {
 			clientes.inserir(c);
-		} else {
-			System.out.println("Cliente Existente");
 		}
 	}
 
-	public void descadastrar(String cpf) {
+	public void descadastrar(String cpf) throws ClienteInexistenteException {
 		clientes.remover(cpf);
 	}
 
-	public Cliente procurar(String cpf) {
+	public Cliente procurar(String cpf) throws ClienteInexistenteException {
 		return clientes.procurar(cpf);
 	}
 }

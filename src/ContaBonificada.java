@@ -12,8 +12,8 @@ public class ContaBonificada extends Conta {
 
 	public void creditar(double valor) {
 		bonus = bonus + valor * 0.01;
-		super.creditar(valor);//saldo = saldo + valor;
-		
+		super.creditar(valor);// saldo = saldo + valor;
+
 	}
 
 	public void renderBonus() {

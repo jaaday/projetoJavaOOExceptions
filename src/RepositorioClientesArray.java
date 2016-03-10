@@ -9,35 +9,41 @@ public class RepositorioClientesArray implements IRepositorioClientes {
 		clientes = new Cliente[tamCache];
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see RepositorioClientes#atualizar(Cliente)
 	 */
 	@Override
-	public void atualizar(Cliente c) {
+	public void atualizar(Cliente c) throws ClienteInexistenteException {
 		int i = procurarIndice(c.getCpf());
 		if (i != -1) {
 			clientes[i] = c;
 		} else {
-			System.out.println("Cliente nao encontrado");
+			throw new ClienteInexistenteException();
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see RepositorioClientes#existe(java.lang.String)
 	 */
 	@Override
-	public boolean existe(String cpf) {
+	public boolean existe(String cpf) throws ClienteExistenteException {
 		boolean resp = false;
 
 		int i = this.procurarIndice(cpf);
 		if (i != -1) {
-			resp = true;
+			throw new ClienteExistenteException();
 		}
 
 		return resp;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see RepositorioClientes#inserir(Cliente)
 	 */
 	@Override
@@ -46,17 +52,19 @@ public class RepositorioClientesArray implements IRepositorioClientes {
 		indice = indice + 1;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see RepositorioClientes#procurar(java.lang.String)
 	 */
 	@Override
-	public Cliente procurar(String cpf) {
+	public Cliente procurar(String cpf) throws ClienteInexistenteException {
 		Cliente c = null;
-		if (existe(cpf)) {
-			int i = this.procurarIndice(cpf);
+		int i = this.procurarIndice(cpf);
+		if (i != -1) {
 			c = clientes[i];
 		} else {
-			System.out.println("Cliente nao encontrado");
+			throw new ClienteInexistenteException();
 		}
 
 		return c;
@@ -77,18 +85,20 @@ public class RepositorioClientesArray implements IRepositorioClientes {
 		return ind;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see RepositorioClientes#remover(java.lang.String)
 	 */
 	@Override
-	public void remover(String cpf) {
-		if (existe(cpf)) {
-			int i = this.procurarIndice(cpf);
+	public void remover(String cpf) throws ClienteInexistenteException {
+		int i = this.procurarIndice(cpf);
+		if (i != -1) {
 			clientes[i] = clientes[indice - 1];
 			clientes[indice - 1] = null;
 			indice = indice - 1;
 		} else {
-			System.out.println("Cliente nao encontrado");
+			throw new ClienteInexistenteException();
 		}
 	}
 }

@@ -49,14 +49,9 @@ public class Fachada {
 	}
 
 	public void cadastrar(ContaAbstrata c) throws ClienteInexistenteException, ContaExistenteException {
-
 		Cliente cli = c.getCliente();
-		if (cli != null) {
-			clientes.procurar(cli.getCpf());
-			contas.cadastrar(c);
-		} else {
-			System.out.println("Cliente Nulo");
-		}
+		clientes.procurar(cli.getCpf());
+		contas.cadastrar(c);
 	}
 
 	public void descadastrarConta(String n) throws ContaInexistenteException {
